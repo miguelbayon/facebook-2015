@@ -135,9 +135,15 @@ public class Post
             info += min + " Minutes, ";
         info += sec + " Seconds\n";
         return info;
-    }  
-  
-  
+    }
+    
+    /**
+     * returns the username for this post
+     */
+    public String getUsername()
+    {
+        return username;
+    }
 }
 
 
@@ -174,6 +180,12 @@ public class MessagePost
     public String getText(){
         return message;
     }
+  
+  
+  	public void printShortSummary()
+    {
+      System.out.println("Esto es un post de texto creado" + getUsername());
+    }    
 }
 
 
@@ -221,3 +233,48 @@ public class PhotoPost
         return caption;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
