@@ -161,7 +161,7 @@ import java.util.ArrayList;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class MessagePost
+public class MessagePost extends Post
 {
     private String message;
 
@@ -204,7 +204,7 @@ import java.util.ArrayList;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class PhotoPost
+public class PhotoPost extends Post
 {
     private String filename;
     private String caption;
