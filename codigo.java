@@ -13,7 +13,8 @@ public class NewsFeed
 {
     private ArrayList<MessagePost> messages;
     private ArrayList<PhotoPost> photos;
-
+    private ArrayList<JoinGroupPost> groups;
+ 
     /**
      * Constructor for objects of class NewsFeed
      */
@@ -21,6 +22,7 @@ public class NewsFeed
     {
         messages = new ArrayList<>();
         photos = new ArrayList<>();
+        groups = new ArrayList<>();      
     }
 
     /**
@@ -42,7 +44,14 @@ public class NewsFeed
     {
         photos.add(photo);
     }
-    
+
+	/**
+     * Añade un post de grupo
+     */
+    public void addGroupPost(JoinGroupPost group){
+        groups.add(group);
+    }	  
+  
     /**
      * Show the post
      */
@@ -53,6 +62,9 @@ public class NewsFeed
         for(PhotoPost photo : photos){
             photo.display();
         }
+        for(JoinGroupPost group : groups){
+              group.display();
+        }
     }
 }
 
@@ -61,19 +73,17 @@ public class NewsFeed
 /***********************************
               Post.java
  ***********************************/
-import java.util.ArrayList;
+
 
 public class Post
 {
 	private String username;
   private long timestamp;
   private int likes;
-  private ArrayList<String> comments;
 
   public Post(String user){
   	username = user;
     timestamp = System.currentTimeMillis();
-  	comments = new ArrayList<>();
     likes = 0;
   }
   
@@ -91,13 +101,7 @@ public class Post
         if(likes != 0)
            likes--; 
     }
-    
-    /**
-     * Metodo para añadir un comentario al post
-     */
-    public void addComment(String text){
-        comments.add(text);
-    }
+  
   
     
     /**
@@ -116,11 +120,7 @@ public class Post
         info += username + "\n=====================\n" + "Posted: ";
         info += timeString(time);
         info += "_____________________\nLikes: " + likes + "\n=====================\n\n";
-        if(comments.size() != 0)
-            for(int i=0; i<comments.size(); i++)
-                info += comments.get(i) + "\n_____________________\n";
-        else
-            info += "Sin comentarios";
+
         System.out.println(info);
     }
     
@@ -161,7 +161,7 @@ import java.util.ArrayList;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class MessagePost extends Post
+public class MessagePost extends PostWithComments
 {
     private String message;
 
@@ -204,7 +204,7 @@ import java.util.ArrayList;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class PhotoPost extends Post
+public class PhotoPost extends PostWithComments
 {
     private String filename;
     private String caption;
@@ -236,11 +236,51 @@ public class PhotoPost extends Post
 
 
 
+/**************************************
+       PostWithComments.java 
+ **************************************/
+import java.util.ArrayList;
+
+public class PostWithComments extends Post
+{
+		private ArrayList<String> comments;
+      
+    /**
+     * Constructor for objects of class Comments
+     */
+    public PostWithComments(String username)
+    {
+        super(username);
+        comments = new ArrayList<>();
+    }  
+  
+		public void addComment(String comment)
+    {
+        comments.add(comment);
+    }	
+}
 
 
 
+/******************************************
+            JoinGroupPost.java
+ ******************************************/
+public class JoinGroupPost extends Post
+{
+	private String group;
+  
+  /**
+     * Constructor for objects of class JoinGroupPost
+     */
+    public JoinGroupPost(String author, String nombreGrupo)
+    {
+        // initialise instance variables
+        super(author);
+        this.nombreGrupo = nombreGrupo; 
+        
+    }
 
-
+}
 
 
 
