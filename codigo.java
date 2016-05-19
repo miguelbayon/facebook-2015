@@ -11,59 +11,33 @@ import java.util.ArrayList;
  */
 public class NewsFeed
 {
-    private ArrayList<MessagePost> messages;
-    private ArrayList<PhotoPost> photos;
-    private ArrayList<JoinGroupPost> groups;
+    private ArrayList<Post> messages;
  
     /**
      * Constructor for objects of class NewsFeed
      */
     public NewsFeed()
     {
-        messages = new ArrayList<>();
-        photos = new ArrayList<>();
-        groups = new ArrayList<>();      
+        posts = new ArrayList<>();     
     }
 
     /**
-     * Add a post with a message
+     * Add a post 
      * 
-     * @message the message to introduce
+     * @post the post to introduce
      */
-    public void addMessagePost(MessagePost message)
+    public void addPost(Post post)
     {
-        messages.add(message);
+        posts.add(post);
     }
 
-    /**
-     * Add a post with a image
-     * 
-     * @message the image to introduce
-     */
-    public void addPhotoPost(PhotoPost photo)
-    {
-        photos.add(photo);
-    }
-
-	/**
-     * Añade un post de grupo
-     */
-    public void addGroupPost(JoinGroupPost group){
-        groups.add(group);
-    }	  
   
     /**
      * Show the post
      */
     public void show(){
-        for(MessagePost message : messages){
-            message.display();
-        }
-        for(PhotoPost photo : photos){
-            photo.display();
-        }
-        for(JoinGroupPost group : groups){
-              group.display();
+        for(Post posts : post){
+            post.display();
         }
     }
 }
@@ -281,7 +255,6 @@ public class JoinGroupPost extends Post
     }
 
 }
-
 
 
 
