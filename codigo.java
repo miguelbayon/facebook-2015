@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class NewsFeed
 {
-    private ArrayList<Post> messages;
+    private ArrayList<Post> posts;
  
     /**
      * Constructor for objects of class NewsFeed
@@ -36,7 +36,7 @@ public class NewsFeed
      * Show the post
      */
     public void show(){
-        for(Post posts : post){
+        for(Post post : posts){
            System.out.println(post);
            System.out.println("\n\n");          
         }
@@ -224,7 +224,7 @@ public class PhotoPost extends PostWithComments
     		String text = "";
         text += filename;
         text += caption;
-        text += super.display();   
+        text += super.toString();   
     		return text;
     } 	
 }
@@ -293,7 +293,7 @@ public class JoinGroupPost extends Post
     {
         String info;
         info = getUsername() + "se unio a" +  nombreGrupo;
-        String info = super.toString();        
+        info += super.toString();        
         return info;
     }
 
