@@ -37,7 +37,8 @@ public class NewsFeed
      */
     public void show(){
         for(Post posts : post){
-            post.display();
+           System.out.println(post);
+           System.out.println("\n\n");          
         }
     }
 }
@@ -88,14 +89,14 @@ public class Post
     /**
      * Metodo que muestra toda la info del post
      */
-    public void display(){
+    public String toString(){
         String info = "";
         long time = System.currentTimeMillis() - getTimeStamp();
         info += username + "\n=====================\n" + "Posted: ";
         info += timeString(time);
         info += "_____________________\nLikes: " + likes + "\n=====================\n\n";
 
-        System.out.println(info);
+      	return info;
     }
     
     /**
@@ -160,6 +161,16 @@ public class MessagePost extends PostWithComments
     {
       System.out.println("Esto es un post de texto creado" + getUsername());
     }    
+  
+  public String toString()
+    {
+    		String text = "";
+        text += "Mensaje: " + message;
+        text += super.toString();
+    		return text;
+  }
+  
+  	
 }
 
 
@@ -206,6 +217,16 @@ public class PhotoPost extends PostWithComments
     public String getCaption(){
         return caption;
     }
+  
+  
+  public String toString()
+    {
+    		String text = "";
+        text += filename;
+        text += caption;
+        text += super.display();   
+    		return text;
+    } 	
 }
 
 
@@ -232,6 +253,17 @@ public class PostWithComments extends Post
     {
         comments.add(comment);
     }	
+  
+    public String toString()
+    {
+      	String text = "";
+      	text += super.toString();
+        for (String comment :  comments)
+        {
+           text += comment;
+        }
+      	return text;
+    }
 }
 
 
@@ -241,7 +273,7 @@ public class PostWithComments extends Post
  ******************************************/
 public class JoinGroupPost extends Post
 {
-	private String group;
+	private String nombreGrupo;
   
   /**
      * Constructor for objects of class JoinGroupPost
@@ -252,6 +284,17 @@ public class JoinGroupPost extends Post
         super(author);
         this.nombreGrupo = nombreGrupo; 
         
+    }
+  
+    /**
+     * toString
+     */
+    public String toString()
+    {
+        String info;
+        info = getUsername() + "se unio a" +  nombreGrupo;
+        String info = super.toString();        
+        return info;
     }
 
 }
