@@ -301,6 +301,34 @@ public class JoinGroupPost extends Post
 
 
 
+/***********************************
+             Test.java
+ ***********************************/
+public class Test
+{
+
+    /**
+     * Constructor for objects of class Test
+     */
+    public Test()
+    {
+        NewsFeed facebook = new NewsFeed();
+        MessagePost post01 = new MessagePost("Pepe", "Vivan las vacaciones");
+        PhotoPost post02 = new PhotoPost("Juan", "montanas.jpg", "Vistas desdde los picos de Europa");
+        MessagePost post03 = new MessagePost("Juan", "Empieza el verano!");
+        PhotoPost post04 = new PhotoPost("Luis", "surf.jpg", "Mi nueva tabla de surf"); 
+        JoinGroupPost post05 = new JoinGroupPost("Pepe", "Dueños de perros");
+        
+        facebook.addPost(post01);
+        facebook.addPost(post02);
+        facebook.addPost(post03);
+        facebook.addPost(post04);
+        facebook.addPost(post05);  
+        facebook.show();
+    }
+}
+
+
 
 
 
