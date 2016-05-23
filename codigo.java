@@ -46,22 +46,28 @@ public class NewsFeed
     /**
      * Show only the posts given
      */
-    public void showFilteredPost(String a)
+    public void showFilteredPost(String tipoPost)
     {
-			for(Post post : posts){
-            boolean b = false;
-            if(a.equals("MessagePost"))
-                b = post instanceof MessagePost;
-            else if (a.equals("PhotoPost"))
-                b = post instanceof PhotoPost;
-            else if (a.equals("JoinGroupPost"))
-                b = post instanceof JoinGroupPost;
-            
-              if(b){
-                System.out.println(post);
-            }
+      for(Post post : posts){
+      	if(post.getClass().getName().equals(tipoPost))
+          System.out.println(post);
       }
     }
+  
+  
+  	/**
+     * Show image filename and autor for photo post
+     */
+  	public void showOnlyPictures()
+    {
+      for (Post post : posts){
+        if(post instanceof PhotoPost) {
+        	System.out.println(((PhotoPost)post).getImageFile() + "Sub " + post.getUsername());
+        }
+      }
+      
+    }
+  
   
   
 }
@@ -328,6 +334,7 @@ public class JoinGroupPost extends Post
              Test.java
  ***********************************/
 
+
 /**
  * Write a description of class Test here.
  * 
@@ -372,8 +379,27 @@ public class Test
         facebook.addPost(post04);
         facebook.addPost(post05);  
         facebook.showFilteredPost("MessagePost");
-    }    
+    }  
+  
+  
+    public void testShowOnlyPictures()
+    {
+        NewsFeed facebook = new NewsFeed();
+        MessagePost post01 = new MessagePost("Pepe", "Vivan las vacaciones");
+        PhotoPost post02 = new PhotoPost("Juan", "montanas.jpg", "Vistas desdde los picos de Europa");
+        MessagePost post03 = new MessagePost("Juan", "Empieza el verano!");
+        PhotoPost post04 = new PhotoPost("Luis", "surf.jpg", "Mi nueva tabla de surf"); 
+        JoinGroupPost post05 = new JoinGroupPost("Pepe", "Dueños de perros");
+        
+        facebook.addPost(post01);
+        facebook.addPost(post02);
+        facebook.addPost(post03);
+        facebook.addPost(post04);
+        facebook.addPost(post05);  
+        facebook.showOnlyPictures();
+    }      
 }
+
 
 
 
